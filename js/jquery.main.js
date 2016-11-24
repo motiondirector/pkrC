@@ -50,7 +50,7 @@ function initWow() {
 function initJasonReader() {
 
 	setTimeout(function () {
-		var showData = $('#show-data');
+		var showData = $('.hand-row');
 
 	    $.getJSON('game.json', function (data) {
 	      console.log(data);
@@ -64,13 +64,11 @@ function initJasonReader() {
 	      
 
 	      if (cards.length) {
-	        var content = '<li>' + cards.join('</li><li>') + '</li>';
-	        var list = $('<ul />').html(content);
+	        var content = '<div class="card ' + cards.join('"></div> <div class="card ') + '"></div>';
+	        var list = $('<div />').html(content);
 	        showData.append(list);
 	      }
 	    });
-
-      showData.text('Loading the JSON file.');
 	  
 	}, 1000);
 
