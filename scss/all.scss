@@ -18,14 +18,22 @@ body {
 	background: #2c3e50;
 }
 
+h1 {
+	text-align: center;
+	color: red;
+	margin: 20px auto 10px;
+	font-weight: 100;
+	font-size: 46px;
+}
+
 h2 {
-	font-size: 36px;
+	font-size: 32px;
 	line-height: 1.4;
-	font-weight: 300;
-	margin: 0 0 30px;
+	font-weight: 600;
+	margin: 30px 0 10px;
+	color: red;
 	@media screen and (max-width: $mobile) {
 		font-size: 26px;
-		margin: 0 0 20px;
 	}
 }
 @media screen and (max-width: $mobile) {
@@ -41,6 +49,13 @@ p {
 	margin: 0 auto;
 	position: relative;
 	@extend %clearfix;
+
+	@media screen and (max-width: 1452px) {
+		margin: 0 40px;
+	}
+	@media screen and (max-width: $mobile) {
+		margin: 0 20px;
+	}
 }
 .centered {
 	text-align: center;
@@ -52,7 +67,11 @@ p {
 }
 
 .hand-row {
-	padding: 20px 0;
+	padding: 0;
+	-webkit-transition: all 0.5s ease-out; 
+    transition: all 0.5s ease-out; 
+    margin: 0 auto;
+
 	.card {
 		display: inline-block;
 		width: 110px;
@@ -60,6 +79,14 @@ p {
 	   padding: 10px;
 	   border: solid 1px #ccc;
 	   border-radius: 3px;
+	   -webkit-transition: all 0.3s ease-out; 
+    transition: all 0.3s ease-out; 
+
+	   &:hover {
+	   	-webkit-transform: scale(1.05); 
+        -ms-transform: scale(1.05); 
+          transform: scale(1.05);  
+	   }
 
       &.ace_of_clubs {
 			background: url("../images/cards/ace_of_clubs.png") no-repeat center #fff; 

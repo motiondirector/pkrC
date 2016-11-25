@@ -49,24 +49,34 @@ function initWow() {
 
 function initJasonReader() {
 
-	setTimeout(function () {
-		var showData = $('.hand-row');
+	window.setInterval(function(){
+		var showHandOne = $('.handOne');
+		var showHandTwo = $('.handTwo');
 
 	    $.getJSON('game.json', function (data) {
 	      console.log(data);
 
-	      var cards = data.cards.map(function (card) {
+	      var handOne = data.handOne.map(function (card) {
 	        return card.cardId
 	      });
 
-	      showData.empty();
+	      var handTwo = data.handTwo.map(function (card) {
+	        return card.cardId
+	      });
 
-	      
+	      showHandOne.empty();
+	      showHandTwo.empty();
 
-	      if (cards.length) {
-	        var content = '<div class="card ' + cards.join('"></div> <div class="card ') + '"></div>';
+	      if (handOne.length) {
+	        var content = '<div class="card ' + handOne.join('"></div> <div class="card ') + '"></div>';
 	        var list = $('<div />').html(content);
-	        showData.append(list);
+	        showHandOne.append(list);
+	      }
+
+	      if (handTwo.length) {
+	        var content = '<div class="card ' + handTwo.join('"></div> <div class="card ') + '"></div>';
+	        var list = $('<div />').html(content);
+	        showHandTwo.append(list);
 	      }
 	    });
 	  

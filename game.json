@@ -1,18 +1,36 @@
-
 {
-  "cards": [
-    {
-      "cardId": "eight_of_spades"
-    },{
-      "cardId": "ace_of_clubs"
-    },{
-      "cardId": "two_of_spades"
-    },{
-      "cardId": "king_of_spades"
-    },{
-      "cardId": "three_of_diamonds"
-    }
+"handOne": [
+   {
+"cardId": "eight_of_spades"
+  },
+   {
+"cardId": "two_of_diamonds"
+  },
+   {
+"cardId": "jack_of_diamonds"
+  },
+   {
+"cardId": "six_of_spades"
+  },
+   {
+"cardId": "queen_of_hearts"
+   }
+ ],
+"handTwo": [
+   {
+"cardId": "four_of_diamonds"
+  },
+   {
+"cardId": "ace_of_spades"
+  },
+   {
+"cardId": "ace_of_diamonds"
+  },
+   {
+"cardId": "ten_of_spades"
+  },
+   {
+"cardId": "seven_of_clubs"
+   }
   ]
 }
-
-

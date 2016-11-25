@@ -31,6 +31,8 @@ void printArray(int a[], int size);
 int isBetterHand(struct Card handOne[], struct Card handTwo[], const char *wFace[]);
 void printHandResults(const char *wFace[], struct Card wHand[]);
 
+FILE *fp;
+
 int main(void)
 {
     //initialize deck array
@@ -41,13 +43,13 @@ int main(void)
     shuffle(deck); // shuffle the deck
 
     //initialize suit array
-    const char *suit[SUITS]= {"Hearts", "Diamonds", "Clubs", "Spades"};
+    const char *suit[SUITS]= {"hearts", "diamonds", "clubs", "spades"};
 
     //initialize face array
     const char *face[FACES] = 
-        {"Ace", "Deuce", "Three", "Four",
-         "Five", "Six", "Seven", "Eight",
-         "Nine", "Ten", "Jack", "Queen", "King"};
+        {"ace", "two", "three", "four",
+         "five", "six", "seven", "eight",
+         "nine", "ten", "jack", "queen", "king"};
 
     //initialize card hand array
     struct Card hand[HAND_SIZE];
@@ -57,12 +59,23 @@ int main(void)
      
     dealHand(deck, face, suit, hand, &deckTracker); //deal a Hand
     dealHand(deck, face, suit, handTwo, &deckTracker); //deal a Hand
+
+    fp = fopen("game.json", "w+");
+
+    fprintf(fp, "%s\n", "{");
+    fprintf(fp, "%3s\n", "\"handOne\": [");
     
     printHand(hand);//print dealed hand
     printHandResults(face, hand);
+
+    fprintf(fp, "%3s\n", "],");
+    fprintf(fp, "%3s\n", "\"handTwo\": [");
     
     printHand(handTwo);//print dealed hand
     printHandResults(face, handTwo);
+
+    fprintf(fp, "%3s\n", "]");
+    fprintf(fp, "%s\n", "}");
 
     unsigned winner = isBetterHand(hand, handTwo, face);
     if(winner == 3) {
@@ -74,6 +87,8 @@ int main(void)
     else {
         printf("%s\n\n", "Hand ONE is better");
     }
+
+    fclose(fp);
 
 }
 
@@ -124,8 +139,21 @@ void dealHand(unsigned int wDeck[][FACES], const char *wFace[],
 //To print a hand
 void printHand(struct Card wHand[]) {
     printf("\n");
+    //fprintf(fp, "This is testing for fprintf...\n");
+    //fputs("This is testing for fputs...\n", fp);
+
     for (unsigned i = 0; i < HAND_SIZE; ++i) {
-        printf("%5s of %-8s\n", wHand[i].face, wHand[i].suit); 
+        printf("%5s of %-8s\n", wHand[i].face, wHand[i].suit);
+        fprintf(fp, "%4s\n", "{"); 
+        fprintf(fp, "%6s", "\"cardId\": \"");
+        fprintf(fp, "%9s_of_%s", wHand[i].face, wHand[i].suit);
+        fprintf(fp, "%s\n", "\"");
+        if (i != HAND_SIZE - 1) {
+            fprintf(fp, "%4s\n", "},"); 
+        }
+        else {
+            fprintf(fp, "%4s\n", "}"); 
+        }
     }
 }
 
